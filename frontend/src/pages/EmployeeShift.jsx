@@ -29,7 +29,7 @@ const EmployeeShifts = () => {
   }, [user]);
 
   return (
-    <div className="p-4">
+    <div className="px-4">
       <Navbar />
       <h2 className="text-2xl py-10 font-semibold text-center mb-4">
         My Shifts

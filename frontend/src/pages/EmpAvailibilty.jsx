@@ -4,6 +4,14 @@ import { Button } from "../components/ui/button";
 import { Alert } from "../components/ui/alert";
 import axios from "axios";
 import Navbar from "../components/navbar";
+import { allTimeZones } from "../lib/timezones";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../components/ui/select";
 
 const AvailibiltyPage = () => {
   const [availibilty, setAvailibilty] = useState([]);
@@ -76,13 +84,13 @@ const AvailibiltyPage = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="px-4">
       <Navbar />
       <h2 className="text-2xl py-10 font-semibold text-center mb-4">
         Create availibilty
       </h2>
       {error && <Alert type="error">{error}</Alert>}
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className=" space-y-4">
         <div>
           <label
             htmlFor="date"
@@ -135,13 +143,18 @@ const AvailibiltyPage = () => {
           >
             Timezone
           </label>
-          <Input
-            id="timezone"
-            type="text"
-            value={timezone}
-            onChange={(e) => setTimezone(e.target.value)}
-            required
-          />
+          <Select id="timezone" value={timezone} onValueChange={setTimezone}>
+          <SelectTrigger className="w-full">
+            <SelectValue>{timezone}</SelectValue>
+          </SelectTrigger>
+          <SelectContent>
+            {allTimeZones.map((tz) => (
+              <SelectItem key={tz} value={tz}>
+                {tz}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
         </div>
         <Button type="submit" className="w-full">
           Create availibilty
@@ -151,6 +164,7 @@ const AvailibiltyPage = () => {
         Current availibilty
       </h2>
       <div className="mt-4">
+        Timezone-{Intl.DateTimeFormat().resolvedOptions().timeZone}
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white">
             <thead>
