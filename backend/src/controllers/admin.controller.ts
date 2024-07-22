@@ -18,7 +18,7 @@ export const getAllUsersWithAvailibilty = async (
   res: Response,
 ): Promise<void> => {
   try {
-    const users = await User.find({}, { password: 0 }).exec(); // Exclude password from response
+    const users = await User.find({}, { password: 0 }).exec();
 
     res.status(200).json(users);
   } catch (err: any) {

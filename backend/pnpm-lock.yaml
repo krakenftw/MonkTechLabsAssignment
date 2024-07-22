@@ -50,6 +50,9 @@ dependencies:
   mongoose:
     specifier: ^8.5.1
     version: 8.5.1
+  typescript:
+    specifier: ^5.5.3
+    version: 5.5.3
 
 packages:
 
@@ -873,6 +876,12 @@ packages:
     dependencies:
       media-typer: 0.3.0
       mime-types: 2.1.35
+    dev: false
+
+  /typescript@5.5.3:
+    resolution: {integrity: sha512-/hreyEujaB0w76zKo6717l3L0o/qEUtRgdvUBvlkhoWeOVMjMuHNHk0BRBzikzuGDqNmPQbg5ifMEqsHLiIUcQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
     dev: false
 
   /uid-safe@2.1.5:

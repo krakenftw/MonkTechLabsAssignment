@@ -4,12 +4,13 @@ import {
   getavailibilty,
   getShifts,
 } from "../controllers/employee.controller";
+import { isLoggedIn } from "../middlewares/isLoggedIn";
 
 const employeeRouter = Router();
 
-employeeRouter.post("/availibilty", createavailibilty);
+employeeRouter.post("/availibilty", isLoggedIn, createavailibilty);
 
-employeeRouter.get("/availibilty", getavailibilty);
-employeeRouter.get("/shifts", getShifts);
+employeeRouter.get("/availibilty", isLoggedIn, getavailibilty);
+employeeRouter.get("/shifts", isLoggedIn, getShifts);
 
 export default employeeRouter;

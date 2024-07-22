@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const admin_controller_1 = require("../controllers/admin.controller");
+const adminMiddleware_1 = require("../middlewares/adminMiddleware");
+const adminRouter = (0, express_1.Router)();
+adminRouter.get("/availibilty", adminMiddleware_1.isAdmin, admin_controller_1.adminGetAvailibilty);
+adminRouter.post("/shifts", adminMiddleware_1.isAdmin, admin_controller_1.adminCreateShift);
+adminRouter.get("/users", adminMiddleware_1.isAdmin, admin_controller_1.getAllUsersWithAvailibilty);
+adminRouter.get("/availibilty/:employeeId", adminMiddleware_1.isAdmin, admin_controller_1.getAvailibiltyByEmployeeId);
+adminRouter.post("/availibilty/time", adminMiddleware_1.isAdmin, admin_controller_1.getUsersWithTime);
+adminRouter.post("/shifts/create", adminMiddleware_1.isAdmin, admin_controller_1.adminCreateShift);
+exports.default = adminRouter;

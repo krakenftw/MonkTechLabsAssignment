@@ -12,7 +12,7 @@ const app: Express = express();
 
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(cors({ credentials: true, origin: ["http://localhost:5173", "https://monk-tech-labs-assignment.vercel.app"] }));
 app.set("trust proxy", 1);
 app.use(
   session({
@@ -20,8 +20,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false,
+      secure: process.env.NODE_ENV ? true : false,
       maxAge: 1000 * 60 * 60 * 24,
+      sameSite: "none"
     },
   }),
 );
